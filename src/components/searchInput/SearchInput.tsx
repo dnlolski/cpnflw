@@ -1,16 +1,17 @@
-import React, { ChangeEventHandler } from 'react';
+import React, { ChangeEventHandler, FormEventHandler } from 'react';
 import { InputComponent } from './SearchInput.styles';
 
 
-function SearchInput({ onSearchChange }: SearchInputProps) {
+function SearchInput({onSearchSubmit, onSearchChange }: SearchInputProps) {
 
   return (
-    <InputComponent onChange={onSearchChange} placeholder={'Enter API name...'}/>
+    <InputComponent onSubmit={onSearchSubmit} onChange={onSearchChange} placeholder={'Enter API name...'}/>
   )
 }
 
 interface SearchInputProps {
   onSearchChange: ChangeEventHandler<HTMLInputElement>
+  onSearchSubmit: FormEventHandler<HTMLInputElement>
 }
 
 export default SearchInput;

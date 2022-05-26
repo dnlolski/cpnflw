@@ -2,10 +2,10 @@ import React from 'react';
 import { ApiBrowserHeader } from './Header.styles';
 
 
-function Header({ headerText }: HeaderProps) {
+function Header({ smallHeader, headerText }: HeaderProps) {
 
   return (
-    <ApiBrowserHeader>
+    <ApiBrowserHeader small={smallHeader}>
       {headerText}
     </ApiBrowserHeader>
   )
@@ -13,6 +13,7 @@ function Header({ headerText }: HeaderProps) {
 
 interface HeaderProps {
   headerText: string
+  smallHeader?: boolean
 }
 
 export default Header;
