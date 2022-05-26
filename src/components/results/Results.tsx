@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResultsContainer, SearchResults } from './Results.styles';
+import { ApiDescription, ApiElement, ApiDivider, ApiLink, ResultsContainer, SearchResults } from './Results.styles';
 import Header from '../header/Header';
 import { ApiDetails } from '../../App';
 
@@ -8,14 +8,24 @@ function Results({ searchResult }: ResultsProps) {
 
   return (
     <ResultsContainer>
-      <Header smallHeader headerText={'Results'}/>
-      <SearchResults>
-        {searchResult.map((result) =>
+      {searchResult.length ?
           <>
-            {result.Link}
+            <Header smallHeader headerText={'Results'}/>
+            <SearchResults>
+              {searchResult.map((result) =>
+                <ApiElement key={result.API}>
+                  <ApiLink href={result.Link} target="_blank">{result.API}</ApiLink>
+                  <ApiDescription>
+                    {result.Description}
+                  </ApiDescription>
+                  <ApiDivider/>
+                </ApiElement>
+              )}
+            </SearchResults>
           </>
-        )}
-      </SearchResults>
+        :
+        <>no results</>
+      }
     </ResultsContainer>
   )
 }

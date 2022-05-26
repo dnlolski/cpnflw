@@ -8,6 +8,7 @@ class Api {
   searchForApi = (phrase: string): Promise<SearchResult> => {
     return fetch(`${this.baseUrl}entries?title=${phrase}&cors=yes`)
       .then(response => {
+        console.log(response)
         if(!response.ok) {
           throw new Error(response.statusText)
         }

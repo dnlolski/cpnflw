@@ -10,7 +10,7 @@ import Api from './components/api/Api';
 function App() {
 
   const [searchInput, setSearchInput] = useState<string>('')
-  const [searchResult, setSearchResult] = useState<ApiDetails[]>()
+  const [searchResult, setSearchResult] = useState<ApiDetails[]>([]);
   const [loading, setLoading] = useState(false);
 
   const api = new Api();
@@ -23,13 +23,18 @@ function App() {
     setLoading(true);
     api.searchForApi(searchInput)
       .then((response) => {
-        let result = Object.fromEntries(Object.entries(response).slice(0, 5));
-        setSearchResult(result)
+        if(response.entries) {
+          const results = response.entries.filter(entry => entry.Description !== '' && entry.Description.length < 100)
+          setSearchResult(results.slice(0, 5))
+        }
+        else {
+          setSearchResult([])
+        }
       })
       .finally(() => {
         setLoading(false);
       })
-  }
+  };
 
   return (
     <AppContainer>
@@ -45,18 +50,18 @@ function App() {
 }
 
 export interface SearchResult {
-  count?: number
-  entries?: ApiDetails[]
+  count: number
+  entries: ApiDetails[]
 }
 
 export interface ApiDetails {
-  API?: string
-  Auth?: string
-  Category?: string
-  Cors?: string
-  Description?: string
-  HTTP?: boolean
-  Link?: string
+  API: string
+  Auth: string
+  Category: string
+  Cors: string
+  Description: string
+  HTTP: boolean
+  Link: string
 }
 
 export default App;
