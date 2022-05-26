@@ -11,7 +11,7 @@ function Header({ headerText }: HeaderProps) {
   )
 }
 
-type HeaderProps = {
+interface HeaderProps {
   headerText: string
 }
 
