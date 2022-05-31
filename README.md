@@ -1,4 +1,4 @@
 # cnpflw
 
 run:  
-```npm install && yarn start```
+```yarn install && yarn start```
